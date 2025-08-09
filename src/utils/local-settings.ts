@@ -7,7 +7,7 @@ interface Config {
   defaultModel?: string;
 }
 
-const CONFIG_DIR = '.groq'; // In home directory
+const CONFIG_DIR = '.ada'; // In home directory
 const CONFIG_FILE = 'local-settings.json';
 
 export class ConfigManager {

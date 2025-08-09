@@ -1,18 +1,12 @@
 <h2 align="center">
  <br>
- <img src="docs/thumbnail.png" alt="Groq Code CLI" width="400">
+ <img src="docs/thumbnail.png" alt="ADA Voice" width="400">
  <br>
  <br>
- Groq Code CLI: A highly customizable, lightweight, and open-source coding CLI powered by Groq for instant iteration.
+ ADA: ADA aspires to be the voice coding assistent. Use Voice to interact with your coding agents.
  <br>
 </h2>
 
-<p align="center">
- <a href="https://github.com/build-with-groq/groq-code-cli/stargazers"><img src="https://img.shields.io/github/stars/build-with-groq/groq-code-cli"></a>
- <a href="https://github.com/build-with-groq/groq-code-cli/blob/main/LICENSE">
- <img src="https://img.shields.io/badge/License-MIT-green.svg">
- </a>
-</p>
 
 <p align="center">
  <a href="#Overview">Overview</a> •
@@ -23,7 +17,6 @@
 
 <br>
 
-https://github.com/user-attachments/assets/5902fd07-1882-4ee7-825b-50d627f8c96a
 
 <br>
 
@@ -45,21 +38,21 @@ A few customization ideas to get started:
 
 ### For Development (Recommended)
 ```bash
-git clone https://github.com/build-with-groq/groq-code-cli.git
-cd groq-code-cli
+git clone https://github.com/build-with-groq/ada-voice.git
+cd ada-voice
 npm install
 npm run build
-npm link        # Enables the `groq` command in any directory
+npm link        # Enables the `ada` command in any directory
 ```
 
 ```bash
 # Run this in the background during development to automatically apply any changes to the source code
-npm run dev  
+npm run dev
 ```
 
 ### To Try it Out
 ```bash
-npx groq-code-cli@latest
+npx ada-voice@latest
 ```
 
 ## Usage
@@ -114,7 +107,7 @@ export GROQ_API_KEY=your_api_key_here
 ### Testing Locally
 ```bash
 # Run this in the background during development to automatically apply any changes to the source code
-npm run dev  
+npm run dev
 ```
 
 ### Available Scripts
@@ -128,7 +121,7 @@ npm run dev        # Build in watch mode
 ```
 groq-code-cli/
 ├── src/
-│   ├── commands/           
+│   ├── commands/
 │   │   ├── definitions/        # Individual command implementations
 │   │   │   ├── clear.ts        # Clear chat history command
 │   │   │   ├── help.ts         # Help command
@@ -137,21 +130,21 @@ groq-code-cli/
 │   │   │   └── reasoning.ts    # Reasoning toggle command
 │   │   ├── base.ts             # Base command interface
 │   │   └── index.ts            # Command exports
-│   ├── core/               
+│   ├── core/
 │   │   ├── agent.ts            # AI agent implementation
 │   │   └── cli.ts              # CLI entry point and setup
-│   ├── tools/              
+│   ├── tools/
 │   │   ├── tool-schemas.ts     # Tool schema definitions
 │   │   ├── tools.ts            # Tool implementations
 │   │   └── validators.ts       # Input validation utilities
-│   ├── ui/                 
+│   ├── ui/
 │   │   ├── App.tsx             # Main application component
-│   │   ├── components/     
+│   │   ├── components/
 │   │   │   ├── core/           # Core chat TUI components
 │   │   │   ├── display/        # Auxiliary components for TUI display
 │   │   │   └── input-overlays/ # Input overlays and modals that occupy the MessageInput box
-│   │   └── hooks/          
-│   └── utils/              
+│   │   └── hooks/
+│   └── utils/
 │       ├── constants.ts        # Application constants
 │       ├── file-ops.ts         # File system operations
 │       ├── local-settings.ts   # Local configuration management

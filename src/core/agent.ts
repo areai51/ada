@@ -235,7 +235,7 @@ When asked about your identity, you should identify yourself as a coding assista
           throw new Error('No API key available. Please use /login to set your Groq API key.');
         }
       }
-      debugLog('Groq client initialized successfully');
+      debugLog('ADA client initialized successfully');
     }
 
     // Add user message
@@ -256,7 +256,7 @@ When asked about your identity, you should identify yourself as a coding assista
         try {
           // Check client exists
           if (!this.client) {
-            throw new Error('Groq client not initialized');
+            throw new Error('ADA client not initialized');
           }
 
           debugLog('Making API call to Groq with model:', this.model);
