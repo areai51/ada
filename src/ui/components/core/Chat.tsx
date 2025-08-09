@@ -10,6 +10,7 @@ import PendingToolApproval from '../input-overlays/PendingToolApproval.js';
 import Login from '../input-overlays/Login.js';
 import ModelSelector from '../input-overlays/ModelSelector.js';
 import MaxIterationsContinue from '../input-overlays/MaxIterationsContinue.js';
+import VoiceInput from './VoiceInput.js';
 import { handleSlashCommand } from '../../../commands/index.js';
 
 interface ChatProps {
@@ -66,11 +67,16 @@ export default function Chat({ agent }: ChatProps) {
   const [showInput, setShowInput] = useState(true);
   const [showLogin, setShowLogin] = useState(false);
   const [showModelSelector, setShowModelSelector] = useState(false);
+  const [showVoiceInput, setShowVoiceInput] = useState(false);
 
   // Handle global keyboard shortcuts
   useInput((input, key) => {
     if (key.ctrl && input === 'c') {
       exit();
+    }
+    if (key.ctrl && input === 'v') {
+      // Toggle voice input mode
+      setShowVoiceInput(true);
     }
     if (key.shift && key.tab) {
       toggleAutoApprove();
@@ -117,6 +123,17 @@ export default function Chat({ agent }: ChatProps) {
       // The agent will handle starting request tracking
       await sendMessage(message);
     }
+  };
+
+  const handleTranscriptionComplete = (text: string) => {
+    setShowVoiceInput(false);
+    if (text.trim()) {
+      setInputValue(text);
+    }
+  };
+
+  const handleVoiceCancel = () => {
+    setShowVoiceInput(false);
   };
 
   const handleApproval = (approved: boolean, autoApproveSession?: boolean) => {
@@ -205,13 +222,19 @@ export default function Chat({ agent }: ChatProps) {
             onCancel={handleModelCancel}
             currentModel={agent.getCurrentModel?.() || undefined}
           />
+        ) : showVoiceInput ? (
+          <VoiceInput
+            onTranscriptionComplete={handleTranscriptionComplete}
+            onCancel={handleVoiceCancel}
+          />
         ) : showInput ? (
           <MessageInput
             value={inputValue}
             onChange={setInputValue}
             onSubmit={handleSendMessage}
-            placeholder="... (Esc to clear, Ctrl+C to exit)"
+            placeholder="... (Esc to clear, Ctrl+V for voice, Ctrl+C to exit)"
             userMessageHistory={userMessageHistory}
+            onVoiceInput={() => setShowVoiceInput(true)}
           />
         ) : (
           <Box>

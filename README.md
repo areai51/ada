@@ -3,7 +3,7 @@
  <img src="docs/thumbnail.png" alt="ADA Voice" width="400">
  <br>
  <br>
- ADA: ADA aspires to be the voice coding assistent. Use Voice to interact with your coding agents.
+ ADA: ADA aspires to be the voice coding assistant. Use Voice to interact with your coding agents.
  <br>
 </h2>
 
@@ -38,8 +38,8 @@ A few customization ideas to get started:
 
 ### For Development (Recommended)
 ```bash
-git clone https://github.com/build-with-groq/ada-voice.git
-cd ada-voice
+git clone https://github.com/areai51/ada.git
+cd ada
 npm install
 npm run build
 npm link        # Enables the `ada` command in any directory
@@ -58,13 +58,13 @@ npx ada-voice@latest
 ## Usage
 ```bash
 # Start chat session
-groq
+ada
 ```
 
 ### Command Line Options
 
 ```bash
-groq [options]
+ada [options]
 
 Options:
   -t, --temperature <temp>      Temperature for generation (default: 1)
@@ -79,7 +79,7 @@ Options:
 On first use, start a chat:
 
 ```bash
-groq
+ada
 ```
 
 And type the `/login` command:
@@ -87,9 +87,9 @@ And type the `/login` command:
 ![Login](docs/login.png)
 >Get your API key from the <strong>Groq Console</strong> [here](https://console.groq.com/keys)
 
-This creates a .groq/ folder in your home directory that stores your API key, default model selection, and any other config you wish to add.
+This creates a .ada/ folder in your home directory that stores your API key, default model selection, and any other config you wish to add.
 
-You can also set your API key for your current directory via environment variable:
+You can also set your API key via environment variable:
 ```bash
 export GROQ_API_KEY=your_api_key_here
 ```
@@ -100,6 +100,17 @@ export GROQ_API_KEY=your_api_key_here
 - `/model` - Select your Groq model
 - `/clear` - Clear chat history and context
 - `/reasoning` - Toggle display of reasoning content in messages
+
+### Voice Input
+
+ADA supports voice input using Groq's speech-to-text API. To use voice input:
+
+1. Press `Ctrl+V` in the chat interface to activate voice input
+2. Speak your message when you see "Listening... speak now"
+3. Press `SPACE` or `ENTER` to stop recording and process your speech
+4. The transcribed text will be automatically sent as your message
+
+For detailed setup instructions, see [Voice Setup Guide](docs/voice-setup.md).
 
 
 ## Development
@@ -149,10 +160,10 @@ groq-code-cli/
 │       ├── file-ops.ts         # File system operations
 │       ├── local-settings.ts   # Local configuration management
 │       └── markdown.ts         # Markdown processing utilities
-├── docs/                   
-├── package.json    
-├── tsconfig.json        
-└── LICENSE          
+├── docs/
+├── package.json
+├── tsconfig.json
+└── LICENSE
 ```
 
 **TL;DR:** Start with `src/core/cli.ts` (main entry point), `src/core/agent.ts`, and `src/ui/hooks/useAgent.ts` (bridge between TUI and the agent). Tools are in `src/tools/`, slash commands are in `src/commands/definitions/`, and customize the TUI in `src/ui/components/`.

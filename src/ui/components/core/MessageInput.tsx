@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Text, useInput } from 'ink';
 import { getCommandNames } from '../../../commands/index.js';
 import SlashCommandSuggestions from '../input-overlays/SlashCommandSuggestions.js';
@@ -9,14 +9,16 @@ interface MessageInputProps {
   onSubmit: (value: string) => void;
   placeholder?: string;
   userMessageHistory?: string[];
+  onVoiceInput?: () => void;  // Callback to trigger voice input mode
 }
 
 export default function MessageInput({ 
   value, 
   onChange, 
   onSubmit, 
-  placeholder = "... (Esc to clear, Ctrl+C to exit)",
-  userMessageHistory = []
+  placeholder = "... (Esc to clear, Ctrl+V for voice, Ctrl+C to exit)",
+  userMessageHistory = [],
+  onVoiceInput
 }: MessageInputProps) {
   const [selectedCommandIndex, setSelectedCommandIndex] = useState(0);
   const [historyIndex, setHistoryIndex] = useState(-1);
@@ -129,6 +131,11 @@ export default function MessageInput({
 
     if (key.ctrl) {
       // Handle Ctrl+C in parent component
+      // Handle Ctrl+V for voice input
+      if (input === 'v' && onVoiceInput) {
+        onVoiceInput();
+        return;
+      }
       return;
     }
 

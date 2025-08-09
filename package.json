@@ -55,5 +55,9 @@
 			"react/prop-types": "off"
 		}
 	},
-	"prettier": "@vdemedes/prettier-config"
+	"prettier": "@vdemedes/prettier-config",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/areai51/ada.git"
+	}
 }
